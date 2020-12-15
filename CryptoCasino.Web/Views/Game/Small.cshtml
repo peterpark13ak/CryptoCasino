@@ -1,0 +1,9 @@
+﻿@model GameViewModel
+@{
+    ViewData["Title"] = "Small";
+}
+
+<div id="gameBoard">
+        @await Html.PartialAsync("_GameBoardPartial", Model)
+    </div>
+

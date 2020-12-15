@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <UserSecretsId>aspnet-WebCasino.Web-924B6F52-A66E-47DB-82A4-13A0E9E04F12</UserSecretsId>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.5" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.5" />
+  </ItemGroup> 
+
+  <ItemGroup>
+    <ProjectReference Include="..\WebCasino.DataContext\WebCasino.DataContext.csproj" />
+    <ProjectReference Include="..\WebCasino.Entities\WebCasino.Entities.csproj" />
+    <ProjectReference Include="..\WebCasino.Service\WebCasino.Service.csproj" />
+  </ItemGroup> 
+
+  <ItemGroup>
+    <Content Update="Areas\Administration\Views\Transactions\Details.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Administration\Views\_ViewImports.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Administration\Views\_ViewStart.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Components\AdminMenu\Default.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+  </ItemGroup>
+
+</Project>

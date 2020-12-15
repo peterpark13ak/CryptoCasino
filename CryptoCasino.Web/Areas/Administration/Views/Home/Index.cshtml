@@ -1,0 +1,19 @@
+﻿@model WebCasino.Web.Areas.Administration.Models.DashboardViewModel
+
+<div id="main">
+    <div class="content">
+        <div class="row">
+            @await Html.PartialAsync("AdminDashboard/_TotalWinsCards", Model)
+        </div>
+        <div class="row">
+            @await Html.PartialAsync("AdminDashboard/_OneYearCard")
+        </div>
+        <div class="row">
+            @await Html.PartialAsync("AdminDashboard/_SixMonthsCards")
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("AdminDashboard/_ChartsScripts")
+}

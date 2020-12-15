@@ -1,0 +1,54 @@
+﻿@model WebCasino.Web.Areas.Administration.Models.TransactionDetailsViewModel
+
+<div class="wrapper">
+    <div class="page-header">
+
+        <div class="container align-items-center">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card card-coin card-plain">
+                        <div class="card-body">
+                            <h3 class="text-center">Transaction Details</h3>
+                            <div class="row justify-content-center">
+
+                                <a class="btn btn-primary btn-simple btn-round" asp-action="Details" asp-controller="UserAdministration" asp-area="Administration" asp-route-id="@Model.User.Id">
+                                    See all @Model.User.Alias Transactions
+                                </a>
+                            </div>
+
+
+                            <ul class="nav nav-tabs nav-tabs-primary justify-content-center">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-toggle="tab" href="#linka">
+                                        Info
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#linkc">
+                                        Details
+                                    </a>
+                                </li>
+                               
+                            </ul>
+                            <div class="tab-content tab-subcategories">
+                                <div class="tab-pane active" id="linka">
+                                    <div class="">
+                                        @await Html.PartialAsync("TransactionsTable/_SingleTransactionTable")
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="linkc">
+                                    <div>
+                                        @await  Html.PartialAsync("TransactionsTable/_TransactionDetailsTable")
+                                    </div>
+                                </div>
+                                
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

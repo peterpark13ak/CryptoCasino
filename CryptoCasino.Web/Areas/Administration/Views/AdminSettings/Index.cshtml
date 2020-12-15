@@ -1,0 +1,42 @@
+﻿@model WebCasino.Web.Areas.Administration.Models.UserSettingsViewModel
+
+@await Html.PartialAsync("AdminActions/_DisplayUserStateChange")
+<div class="wrapper">
+    <div class="page-header">
+        <div class="container align-items-center">
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class="card card-coin card-plain">
+
+                        <div class="card-body">
+                            <div class="row justify-content-center">
+                                <h3>Admin Settings</h3>
+                            </div>
+
+                            <ul class="nav nav-tabs nav-tabs-primary justify-content-center">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-toggle="tab" href="#linka">
+                                        Profile
+                                    </a>
+                                </li>
+
+
+                            </ul>
+
+                            <div class="tab-content tab-subcategories">
+                                <div class="tab-pane active" id="linka">
+                                    @await Html.PartialAsync("AdminActions/_AdminSettingsForm", Model)
+                                </div>
+                              
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+

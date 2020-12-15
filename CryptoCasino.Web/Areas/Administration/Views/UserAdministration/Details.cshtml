@@ -1,0 +1,78 @@
+﻿@model WebCasino.Web.Areas.Administration.Models.UserViewModel
+
+
+<div class="wrapper">
+    <div>
+        <div class="container align-items-center">
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class="card">
+
+                        <div class="card-head">
+                            <div class="row justify-content-center">
+                                <h3 class="card-title">User Transactions History</h3>
+                            </div>
+
+                            <ul class="nav nav-tabs nav-tabs-primary justify-content-center">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-toggle="tab" href="#linka">
+                                        Transactions
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#linkb">
+                                        Transactions Details
+                                    </a>
+                                </li>
+                            </ul>
+                         </div>
+                            <div class="tab-content tab-subcategories">
+                                <div class="tab-pane active" id="linka">
+                                    <div class="card-body" style="max-height:100%">
+                                        @await Html.PartialAsync("UsersTable/_UserTransactionsHistoryTable", Model)
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="linkb">
+                                    <div class="">
+                                        @await Html.PartialAsync("UsersTable/_UserTransactionsDetails", Model)
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+@section Scripts{
+
+
+    <script>
+        $(document).ready(function () {
+            $('#table').DataTable({
+                responsive: true,
+
+            });
+
+            $('#table_filter > label > input').addClass('form-control');
+            $('#table_length > label > select').addClass('form-control');
+
+            $('#table_previous').removeClass('paginate_button previous disabled');
+            $('#table_next').removeClass('paginate_button next disabled');
+
+            $('#table_previous').addClass('tim-icons icon-double-left');
+            $('#table_next').addClass('tim-icons icon-double-right');
+            $('#paginate_button current').addClass('page-link');
+            $('#paginate_button').addClass('page-link');
+
+            $('#table_length').css('float', 'right');
+            $('#table_filter').css('float', 'left');
+        });
+
+    </script>
+}

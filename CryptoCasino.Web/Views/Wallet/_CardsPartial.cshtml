@@ -1,0 +1,147 @@
+﻿@model IEnumerable<CardViewModel>
+@{
+    ViewData["Title"] = "_CardsPartial";
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-xs-6 panel">
+            @if (TempData["SuccessfullDeposit"] != null)
+            {
+                <div class="alert alert-success alert-with-icon">
+                    <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
+                        <i class="tim-icons icon-simple-remove"></i>
+                    </button>
+                    <span data-notify="icon" class="tim-icons icon-bell-55"></span>
+                    <span>
+                        @TempData["SuccessfullDeposit"]
+                    </span>
+                </div>
+            }
+            else if (TempData["FailedDeposit"] != null)
+            {
+                {
+                    <div class="alert alert-danger alert-with-icon">
+                        <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
+                            <i class="tim-icons icon-simple-remove"></i>
+                        </button>
+                        <span data-notify="icon" class="tim-icons icon-bell-55"></span>
+                        <span>
+                            @TempData["FailedDeposit"]
+                        </span>
+                    </div>
+                }
+            }
+            @if (TempData["SuccesfullWithdraw"] != null)
+            {
+                <div class="alert alert-success alert-with-icon">
+                    <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
+                        <i class="tim-icons icon-simple-remove"></i>
+                    </button>
+                    <span data-notify="icon" class="tim-icons icon-bell-55"></span>
+                    <span>
+                        @TempData["SuccesfullWithdraw"]
+                    </span>
+                </div>
+            }
+            else if (TempData["FailedWithdraw"] != null)
+            {
+                {
+                    <div class="alert alert-danger alert-with-icon">
+                        <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
+                            <i class="tim-icons icon-simple-remove"></i>
+                        </button>
+                        <span data-notify="icon" class="tim-icons icon-bell-55"></span>
+                        <span>
+                            @TempData["FailedWithdraw"]
+                        </span>
+                    </div>
+                }
+            }
+            @if (TempData["CardAdded"] != null)
+            {
+                <div class="alert alert-success alert-with-icon">
+                    <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
+                        <i class="tim-icons icon-simple-remove"></i>
+                    </button>
+                    <span data-notify="icon" class="tim-icons icon-bell-55"></span>
+                    <span>
+                        @TempData["CardAdded"]
+                    </span>
+                </div>
+            }
+            @if (TempData["CardAddedFail"] != null)
+            {
+                {
+                    <div class="alert alert-danger alert-with-icon">
+                        <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
+                            <i class="tim-icons icon-simple-remove"></i>
+                        </button>
+                        <span data-notify="icon" class="tim-icons icon-bell-55"></span>
+                        <span>
+                            @TempData["CardAddedFail"]
+                        </span>
+                    </div>
+                }
+            }
+            <div class="card card-coin card-plain">
+                <div class="card-body">
+                    @if (Model.Count() == 0)
+                    {
+                        <h4>You have no cards</h4>
+                    }
+                    else
+                    {
+                        <h4>Your cards</h4>
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Choose a card
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                    @foreach (var card in Model)
+                                    {
+
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="@card.CardId-tab" data-toggle="pill" href="#pills-@card.CardId" role="tab" aria-controls="pills-@card.CardId " aria-selected="true">@card.MaskedNumber</a>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+
+
+        </div>
+        <div class="col-lg-6 col-md-6 col-xs-6 panel">
+            <div class="tab-content" id="pills-tabContent">
+                @foreach (var card in Model)
+                {
+                    <div class="tab-pane fade" id="pills-@card.CardId" role="tabpanel" aria-labelledby="pills-home-tab">
+                        <div class="card card-coin card-plain">
+                            <div class="card-header">
+
+                                <h4 class="title">Card Information</h4>
+                            </div>
+                            <div class="card-body">
+                                <p>Card number: @card.MaskedNumber</p>
+                                <p>Money added: @card.MoneyAdded</p>
+                                <p>Money retrieved: @card.MoneyRetrieved</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+                </div>
+            </div>
+        </div>
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-xs-6 panel">
+            @await Html.PartialAsync("_AddCardPartial", new CardViewModel())
+            </div>
+        </div>
+    </div>
+
+

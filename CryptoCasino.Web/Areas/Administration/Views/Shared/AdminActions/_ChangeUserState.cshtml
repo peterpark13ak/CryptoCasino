@@ -1,0 +1,82 @@
+﻿@model WebCasino.Web.Areas.Administration.Models.UserSettingsViewModel
+
+<table class="table">
+    <tbody>
+        <tr>
+            <td class="adminActionTableCol">
+                <div>
+                    <div class="form-group">
+                        @{
+                            if (Model.Locked)
+                            {
+                                <form asp-action="UnLockUser" asp-controller="UserAdministration" asp-area="Administration" asp-route-id="@Model.Id" method="post">
+                                    <input type="hidden" />
+                                    <button class=" form-control btn btn-default">UnLock</button>
+                                </form>
+
+                            }
+                            else
+                            {
+                                <form asp-action="LockUser" asp-controller="UserAdministration" asp-area="Administration" asp-route-id="@Model.Id" method="post">
+                                    <input type="hidden" />
+                                    <button class=" form-control btn btn-danger">Lock</button>
+                                </form>
+
+                            }
+                        }
+
+                    </div>
+                </div>
+            </td>
+            @{
+                if (Model.Locked)
+                {
+
+                    <td class="adminActionTableCol">
+                        <p class="title">UnLock User</p>
+                        <p class="text-muted">With this action you are going to unlock user.</p>
+                    </td>
+                }
+                else
+                {
+                    <td class="adminActionTableCol">
+                        <p class="title">Lock User</p>
+                        <p class="text-muted">With this action you are going to lock user.</p>
+                    </td>
+                }
+            }
+
+        </tr>
+        <tr>
+            <!-- Change Display if User is locked, to unlock-->
+            <td class="adminActionTableCol">
+                <div class="">
+                    <div class="form-group">
+                        @if (!Model.Locked)
+                        {
+
+
+                            <form asp-action="PromoteUser" asp-controller="UserAdministration" asp-area="Administration" asp-route-id="@Model.Id" method="post">
+                                <input type="hidden" />
+                                <button class=" form-control btn btn-danger">Promote</button>
+                            </form>
+                        }
+
+                    </div>
+                </div>
+            </td>
+            <td class="adminActionTableCol">
+                @if (!Model.Locked)
+                {
+                    <p class="title">Promoto User</p>
+                    <p class="text-muted">With this action you are going to promote user to Admin Role.</p>
+                }
+                else
+                {
+                    <p class="title">Promoto User</p>
+                    <p class="text-muted">To promote this user you must first unlock him.</p>
+                }
+            </td>
+        </tr>
+    </tbody>
+</table>

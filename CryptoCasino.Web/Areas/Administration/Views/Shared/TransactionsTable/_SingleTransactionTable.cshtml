@@ -1,0 +1,35 @@
+﻿
+<table class="table tablesorter " id="plain-table">
+    <thead class=" text-primary">
+        <tr>
+            <th class="header">
+                Currency $
+            </th>
+            <th class="header">
+                AMOUNT @Model.UserCurrency
+            </th>
+            <th class="header">
+                Transaction Type
+            </th>
+            <th class="header">
+                Date
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                @String.Format("{0:.##}", Model.NormalisedAmount)
+            </td>
+            <td>
+                @String.Format("{0:.##}", Model.OriginalAmount)
+            </td>
+            <td>
+                @Model.TransactionType
+            </td>
+            <td>
+                @Model.CreatedOn
+            </td>
+        </tr>
+    </tbody>
+</table>

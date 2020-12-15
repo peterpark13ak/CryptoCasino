@@ -1,0 +1,66 @@
+﻿@model WebCasino.Web.Areas.Administration.Models.UserSettingsViewModel
+
+@await Html.PartialAsync("AdminActions/_DisplayUserStateChange")
+<div class="wrapper">
+    <div class="page-header">
+        <div class="container align-items-center">
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class="card card-coin card-plain">
+
+                        <div class="card-body">
+                            <div class="row justify-content-center">
+                                <h3>User Settings</h3>
+                            </div>
+
+                            <ul class="nav nav-tabs nav-tabs-primary justify-content-center">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-toggle="tab" href="#linka">
+                                        Profile
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#linkb">
+                                        Settings
+                                    </a>
+                                </li>
+                            </ul>
+
+                            <div class="tab-content tab-subcategories ">
+                                <div class="tab-pane active" id="linka">
+
+                                    @await Html.PartialAsync("UserForm/_UserSettingsForm")
+                                </div>
+
+                                <div class="tab-pane" id="linkb">
+                                    <div class="card card-tasks">
+
+                                        <div class="card-body ">
+                                            <div class="table tablesorter table-hover ">
+                                             
+                                                @await Html.PartialAsync("AdminActions/_ChangeUserState", Model)
+
+
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

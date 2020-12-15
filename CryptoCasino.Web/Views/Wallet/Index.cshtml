@@ -1,0 +1,69 @@
+﻿@model WalletViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-card" role="tab" aria-controls="pills-card" aria-selected="true">Cards</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Add/Withdraw Funds</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">History</a>
+    </li>
+</ul>
+<div class="tab-content" id="pills-tabContent">
+    <div class="tab-pane fade show active" id="pills-card" role="tabpanel" aria-labelledby="pills-home-tab">
+        @await Html.PartialAsync("_CardsPartial", Model.Cards)
+    </div>
+    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+        @await Html.PartialAsync("_AddWithdrawFundsPartial", new CardTransactionViewModel(Model.Cards))
+    </div>
+    <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+    @await Html.PartialAsync("_TransactionsPartial", Model.Transactions)
+    </div>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+    <script src="~/card-master/card-master/dist/card.js"></script>
+
+    <script>
+        $(function () {
+            var card = new Card({
+                form: document.getElementById('addCard'),
+                container: '.card-wrapper',
+                formSelectors: {
+                    numberInput: 'input[name="RealNumber"]', // optional — default input[name="number"]
+                    expiryInput: 'input[name="ExpirationDate"]', // optional — default input[name="expiry"]
+                }
+            });
+        });
+    </script>
+    <script>       
+        $(document).ready(function () {
+            $('#table').DataTable({
+                responsive: true,
+
+            });
+
+            $('#table_filter > label > input').addClass('form-control');
+            $('#table_length > label > select').addClass('form-control');
+
+            $('#table_previous').removeClass('paginate_button previous disabled');
+            $('#table_next').removeClass('paginate_button next disabled');
+
+            $('#table_previous').addClass('tim-icons icon-double-left');
+            $('#table_next').addClass('tim-icons icon-double-right');
+            $('#paginate_button current').addClass('page-link');
+            $('#paginate_button').addClass('page-link');
+
+            $('#table_length').css('float', 'right');
+            $('#table_filter').css('float', 'left');
+        });
+    </script>
+    <script src="~/js/expirationDate.js"></script>
+    <script src="~/js/balanceOnWithdraw.js"></script>
+}

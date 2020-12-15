@@ -1,0 +1,139 @@
+﻿
+body > nav {
+	margin-bottom: 40px
+}
+
+select option {
+    background-color: #171941 
+}
+/*
+	------------------------
+	The side navigation menu
+	------------------------
+*/
+.admin-sidenav {
+	margin-top: 15px;
+	height: 100%; /* 100% Full-height */
+	width: 0; /* 0 width - change this with JavaScript */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Stay on top */
+	top: 0;
+	left: 0;
+	background-color: #111; /* Black*/
+	overflow-x: hidden; /* Disable horizontal scroll */
+	padding-top: 60px; /* Place content 60px from the top */
+	transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}
+
+	/* The navigation menu links */
+	.admin-sidenav li {
+		padding: 4px 4px 4px 16px;
+		margin-left: 7px;
+		text-decoration: none;
+		font-size: 15px;
+		color: #818181;
+		transition: 0.3s;
+	}
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+	transition: margin-left .5s;
+}
+
+.open-admin-menu {
+	margin-bottom: 5px;
+}
+
+@media screen and (max-height: 450px) {
+	.admin-sidenav {
+		padding-top: 15px;
+	}
+
+		.admin-sidenav a {
+			font-size: 18px;
+		}
+}
+
+.fixed-plugin {
+	left: 0;
+}
+/*
+	---------------------------
+	CHARTS
+	---------------------------
+*/
+.big-size-monitor {
+	left: 0px;
+	top: 0px;
+	right: 0px;
+	bottom: 0px;
+	overflow: hidden;
+	pointer-events: none;
+	visibility: hidden;
+	z-index: -1;
+}
+
+.chart-container {
+	width: 10px;
+	height: 600px
+}
+
+@media screen and (max-width:768px){
+    .card-wrapper{
+        display: none;
+    }
+}
+
+.admin-sidenav{
+    z-index: 9999;
+}
+
+.section-coins{
+    margin-top: 0px !important;
+}
+
+
+.game-name {
+    margin-bottom: 0px;
+}
+
+.game-board-container {
+    margin-top: 0px;
+}
+
+#animatedWinBox {
+    width: 250px;
+    animation: glow 1s infinite alternate;
+    margin: auto;
+    font-size: 18px;
+    height: 45px;
+    text-align:center;
+}
+
+@keyframes glow {
+    from {
+        box-shadow: 0 0 10px -10px #c8362e;
+    }
+
+    to {
+        box-shadow: 0 0 10px 10px #c8362e;
+    }
+}
+
+.winningRows {
+    animation: win 1s infinite alternate;
+}
+
+@keyframes win {
+    from {
+        box-shadow: 0 0 10px -10px #c8362e;
+    }
+
+    to {
+        box-shadow: 0 0 10px 10px #c8362e;
+    }
+}
+
+.adminActionTableCol{
+    max-width: 50% !important;
+}

@@ -1,0 +1,27 @@
+﻿@model UserLogginViewModel
+
+@if (User.IsInRole("Administrator"))
+{
+
+	<div id="open-admin-nav" class="fixed-plugin float-left">
+		<div class="dropdown show-dropdown">
+            <a href="#" class="open-admin-menu" onclick="openNav()">
+                <i class="fa fa-cog fa-2x"> </i>
+            </a>
+		</div>
+	</div>
+	<div id="mySidenav" class="admin-sidenav">
+		<div class="row">
+			<div class="col-md-12">
+				<ul class="nav nav-pills nav-pills-primary flex-column col-md-11">
+					<li class="nav-item  text-center" onclick="		closeNav()"><a href="#">Administration</a></li>
+					<li class="nav-item"><a class="nav-link" asp-area="Administration" asp-controller="Home" asp-action="Index">Dashboard</a></li>
+					<li class="nav-item"><a class="nav-link" asp-area="Administration" asp-controller="Transactions" asp-action="History">TRANSACTIONS HISTORY</a></li>
+					<li class="nav-item"><a class="nav-link" asp-area="Administration" asp-controller="UserAdministration" asp-action="Index">USERS ADMINISTRATION</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-area="Administration" asp-controller="AdminSettings" asp-action="Index" asp-route-id="@Model.Id">ADMIN SETTINGS</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+}

@@ -1,0 +1,43 @@
+﻿@model WebCasino.Web.Areas.Administration.Models.UserViewModel
+
+<div class="table">
+    <table id="table" class="table table-hover table-dark">
+        <thead>
+            <tr>
+                <th scope="col">Created On</th>
+                <th scope="col">Type</th>
+                <th scope="col">Amount $</th>
+                <th scope="col">User Currency</th>
+                <th scope="col">Description</th>
+                <th scope="col">Email</th>
+                <th scope="col">Alias</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var transaction in Model.Transactions)
+            {
+
+                <tr>
+                    <td>@transaction.CreatedOn</td>
+                    <td>@transaction.TransactionTypeName</td>
+                    <td>@String.Format("{0:.##}", transaction.NormalisedAmount)</td>
+                    <td>XXX</td>
+                    <td>@transaction.Description</td>
+                    <td>@Model.Email</td>
+                    <td>@Model.Alias</td>
+                    <td class="td-actions text-right">
+                        <a class="btn btn-info btn-link btn-icon btn-sm btn-tooltip " asp-action="UserAccountSettings" asp-controller="UserAdministration" asp-area="Administration" asp-route-id="@Model.Id" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-animation="true" data-original-title="Go to User Settings">
+                            <i class="tim-icons icon-single-02"></i>
+                        </a>
+                        <a class="btn btn-success btn-link btn-icon btn-sm" asp-action="Details" asp-controller="Transactions" asp-area="Administration" asp-route-id="@transaction.Id">
+                            <i class="tim-icons icon-settings"></i>
+                        </a>
+
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

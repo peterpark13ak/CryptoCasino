@@ -1,0 +1,30 @@
+﻿@model WebCasino.Web.Areas.Administration.Models.UsersIndexViewModel
+<link href="~/assets/css/" rel="stylesheet" />
+@await Html.PartialAsync("AdminActions/_DisplayUserStateChange")
+<h2>Casino Users</h2>
+
+
+<br />
+<div class="card ">
+    <div class="card-header">
+        <h4 class="card-title"> Users Table</h4>
+    </div>
+    <div class="card-body">
+        
+            @await Html.PartialAsync("UsersTable/_AllUsersTable", Model)
+        
+    </div>
+</div>
+@section Scripts{
+
+
+    <script>
+        $(document).ready(function () {
+            $('#table').DataTable({
+                responsive: true,              
+            });
+
+            });
+
+    </script>
+}

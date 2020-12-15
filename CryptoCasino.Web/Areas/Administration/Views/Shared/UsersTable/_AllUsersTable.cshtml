@@ -1,0 +1,58 @@
+﻿@model WebCasino.Web.Areas.Administration.Models.UsersIndexViewModel
+
+<div class="table">
+    <table id="table" class="table table-hover table-dark">
+        <thead class="text-primary">
+            <tr>
+                <th scope="col">Created On</th>
+                <th scope="col">Email</th>
+                <th scope="col">Alias</th>
+                <th scope="col">Transactions</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model.Users)
+            {
+                <tr>
+                    <td>@user.CreatedOn</td>
+                    <td>@user.Email</td>
+                    <td>@user.Alias</td>
+                    <td>@user.Transactions.Count()</td>
+                    <td class="td-actions">
+                        <a class="btn btn-info btn-link btn-icon btn-sm" asp-action="UserAccountSettings" asp-controller="UserAdministration" asp-area="Administration" asp-route-id="@user.Id">
+                            <i class="tim-icons icon-single-02"></i>
+                        </a>
+                        @if (user.Transactions.Count() > 0)
+                        {
+                            <a class="btn btn-success btn-link btn-icon btn-sm" asp-action="Details" asp-controller="UserAdministration" asp-area="Administration" asp-route-id="@user.Id">
+                                <i class="tim-icons icon-settings"></i>
+                            </a>
+                        }
+
+                        @if (user.Locked)
+                        {
+
+                            <form style=" display:inline!important;" asp-action="TableUnLockUser" asp-controller="UserAdministration" asp-area="Administration" asp-route-id="@user.Id" method="post">
+                                <button class="btn btn-danger btn-link btn-icon btn-sm" data-toggle="tooltip" data-placement="top" title="" data-container="body" data-animation="true" data-original-title="Unlock User">
+                                    <i class="tim-icons icon-lock-circle btn-default"></i>
+                                </button>
+                            </form>
+                        }
+                        else
+                        {
+                            <form style=" display:inline!important;" asp-action="TableLockUser" asp-controller="UserAdministration" asp-area="Administration" asp-route-id="@user.Id" method="post">
+                                <button class="btn btn-danger btn-link btn-icon btn-sm" data-toggle="tooltip" data-placement="top" title="" data-container="body" data-animation="true" data-original-title="Lock User">
+                                    <i class="tim-icons icon-key-25  btn-danger"></i>
+                                </button>
+                            </form>
+                        }
+
+
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

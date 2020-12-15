@@ -1,0 +1,83 @@
+﻿@model WebCasino.Web.Areas.Administration.Models.UserSettingsViewModel
+
+<div class="card text-center">
+    <div class="card-body text-center">
+
+        <div class="col-md-12 justify-content-center">
+            <div class="card">
+
+                <div class="card-body">
+                    <h4>Edit User Profile</h4>
+                    <hr />
+                    <form asp-area="Administration" asp-action="Index" asp-controller="AdminSettings" asp-route-id="@Model.Id" method="post">
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <div class="row">
+                            <div class="col-md-6 px-md-1">
+                                <div class="form-group">
+                                    <label asp-for="Alias"></label>
+                                    <input type="text" asp-for="Alias" class="form-control" placeholder="Username" value="@Model.Alias" />
+                                    <span asp-validation-for="Alias" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 pl-md-1">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Email address</label>
+                                    <input type="email" class="form-control" placeholder="@Model.Email" readonly>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4 pr-md-1">
+                                <div class="form-group">
+                                    <label>Date Of Birth</label>
+                                    <input type="text" class="form-control" placeholder="dateOfBirth" value="@Model.DateOfBirth.ToShortDateString()" readonly>
+                                </div>
+                            </div>
+                            <div class="col-md-4 px-md-1">
+                                <div class="form-group">
+                                    <label>Created On</label>
+                                    <input type="text" class="form-control" placeholder="CreatedOn" value="@Model.CreatedOn" readonly>
+                                </div>
+                            </div>
+                            <div class="col-md-4 pl-md-1">
+                                <div class="form-group">
+                                    <label>Modified On</label>
+                                    <input type="text" class="form-control" placeholder="ModifiedOn" value="@Model.ModifiedOn" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 pr-md-1">
+                                <div class="form-group">
+                                    <label>Locked</label>
+                                    <input type="text" class="form-control" placeholder="Locked" value="@Model.Locked.ToString()" readonly>
+                                </div>
+                            </div>
+                            <div class="col-md-4 px-md-1">
+                                <div class="form-group">
+                                    <label>Is Deleted</label>
+                                    <input type="text" class="form-control" placeholder="IsDeleted" value="@Model.IsDeleted.ToString()" readonly>
+                                </div>
+                            </div>
+                            <div class="col-md-4 pl-md-1">
+                                <div class="form-group">
+                                    <label>Deleted On</label>
+                                    <input type="text" class="form-control" placeholder="DeletedOn" value="@Model.DeletedOn.ToString()" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-fill btn-primary">Save</button>
+                        </div>
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>

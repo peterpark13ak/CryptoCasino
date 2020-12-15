@@ -1,0 +1,76 @@
+﻿@model WebCasino.Web.Areas.Administration.Models.UserViewModel
+<table class="table tablesorter table-hover " id="plain-table">
+    <thead class=" text-primary">
+        <tr>
+            <th class="header">
+                User Transaction Ditails
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <p>
+                    Total transactions in USD : @String.Format("{0:.##}", Model.Transactions.Sum(a => a.NormalisedAmount));
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p>
+                    Total Amount in User Currency: @String.Format("{0:.##}", Model.Transactions.Sum(a => a.OriginalAmount))
+                </p>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p>
+                    Win Transactions: @Model.Transactions.Where(t => t.TransactionTypeName == "Win").Count()
+                </p>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p>
+                    Stake Transactions:  @Model.Transactions.Where(t => t.TransactionTypeName == "Stake").Count()
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p>
+                    Deposits: @Model.Transactions.Where(t => t.TransactionTypeName == "Deposit").Count()
+                </p>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p>
+                    Widthdraws: @Model.Transactions.Where(t => t.TransactionTypeName == "Widthdraw").Count()
+                </p>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p>
+                    First Transaction Date: @Model.Transactions.OrderBy(t => t.CreatedOn).First().CreatedOn
+                </p>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p>
+                    Last Transaction Date: @Model.Transactions.OrderByDescending(t => t.CreatedOn).First().CreatedOn
+                </p>
+
+            </td>
+        </tr>
+    </tbody>
+
+
+</table>

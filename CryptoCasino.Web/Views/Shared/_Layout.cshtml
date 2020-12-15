@@ -1,0 +1,132 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - WebCasino.Web</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/css/site.css" />
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet">
+
+    <!-- Icons -->
+    <link href="~/assets/css/nucleo-icons.css" rel="stylesheet" />
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+
+    <!-- Theme CSS -->
+    <link href="~/assets/css/blk-design-system.min.css" rel="stylesheet" />
+    <link href="~/css/card.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.bootstrap.min.css" rel="stylesheet" />
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-primary">
+        <div class="container">
+            <div class="col-lg-2 col-md-2 col-sm-10"><a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand"><img src="~/images/logo.png" alt="AlphaCasino" /></a></div>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-bar navbar-kebab"></span>
+                <span class="navbar-toggler-bar navbar-kebab"></span>
+                <span class="navbar-toggler-bar navbar-kebab"></span>
+
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a asp-controller="Home" asp-action="Index" class="nav-link"><i class="tim-icons icon-istanbul"></i>Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-area="" asp-controller="Wallet" asp-action="Index" class="nav-link"><i class="tim-icons icon-wallet-43"></i>Wallet</a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-area="" asp-controller="Game" asp-action="Index" class="nav-link"><i class="tim-icons icon-laptop"></i>Games</a>
+                    </li>
+                </ul>
+                @await Component.InvokeAsync("UserLogin")
+            </div>
+        </div>
+    </nav>
+    <div class="container body-content" id="main">
+        @if (User.IsInRole("Administrator"))
+        {
+            @await Component.InvokeAsync("AdminMenu")
+        }
+        @RenderBody()
+        <hr />
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <h1 class="title">Alpha Casino</h1>
+                </div>
+                <div class="col-md-3">
+                    <ul class="nav">
+                        <li class="nav-item">
+                            <a asp-area="" asp-controller="Home" asp-action="index" class="nav-link">
+                                Home
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-area="" asp-controller="game" asp-action="index" class="nav-link">
+                                Games
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <ul class="nav">
+                        <li class="nav-item">
+                            <a asp-area="" asp-controller="wallet" asp-action="index" class="nav-link">
+                                Wallet
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-area="" asp-controller="Manage" asp-action="index" class="nav-link">
+                                Profile
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h3 class="title">Follow us:</h3>
+                    <div class="btn-wrapper profile">
+                        <a target="_blank" href="#" class="btn btn-icon btn-neutral btn-round btn-simple" data-toggle="tooltip" data-original-title="Follow us">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a target="_blank" href="#" class="btn btn-icon btn-neutral btn-round btn-simple" data-toggle="tooltip" data-original-title="Like us">
+                            <i class="fab fa-facebook-square"></i>
+                        </a>
+                        <a target="_blank" href="#" class="btn btn-icon btn-neutral  btn-round btn-simple" data-toggle="tooltip" data-original-title="Follow us">
+                            <i class="fab fa-dribbble"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="~/assets/js/blk-design-system.js"></script>
+    <script src="~/assets/js/plugins/chartjs.min.js"></script>
+
+    <!--Site JS-->
+    <script src="~/js/site.js"></script>
+    <!-- Canvas JS -->
+    <script src="~/js/grafix.js"></script>
+
+    <!-- Paginagion-->
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js "></script>
+
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

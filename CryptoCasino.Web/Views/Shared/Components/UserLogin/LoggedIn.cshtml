@@ -1,0 +1,22 @@
+﻿@model UserLogginViewModel
+@{
+    ViewData["Title"] = "LoggedIn";
+}
+
+<form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right form-inline ml-auto">
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            <a class="nav-link" asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">Hello @Model.Alias!</a>
+        </li>
+        @if (User.IsInRole("Player"))
+        {
+            <li>
+                <a class="nav-link" asp-area="" asp-controller="Wallet" asp-action="Index">Balance: <span id="balanceSpan">@Model.Balance</span> @Model.Currency</a>
+            </li>
+        }
+        <li>
+            <button type="submit" class="btn btn-info">Log out</button>
+        </li>
+    </ul>
+</form>
+

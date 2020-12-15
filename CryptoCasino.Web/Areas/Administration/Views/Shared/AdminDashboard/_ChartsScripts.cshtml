@@ -1,0 +1,34 @@
+﻿<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="~/js/charts/oneYearPurpleChart.js"></script>
+<script src="~/js/charts/sixMonthsPurpleChart.js"></script>
+<script src="~/js/charts/sixMonthsGreenChart.js"></script>
+<script src="~/js/charts/daylyBlueChart.js"></script>
+<script>
+	$(document).ready(function () {
+
+		let daylyUSD = @Html.Raw(Json.Serialize(Model.DaylyWins.DaylyTotalUSD));
+		let daylyGBP = @Html.Raw(Json.Serialize(Model.DaylyWins.DaylyWinsGBP));
+		let daylyEUR = @Html.Raw(Json.Serialize(Model.DaylyWins.DaylyWinsEUR));
+		let daylyBGN = @Html.Raw(Json.Serialize(Model.DaylyWins.DaylyWinsBGN));
+		let sixMonthsWins = @Html.Raw(Json.Serialize(Model.SixMonthsWins.monthValue));
+		let sixMonthsStakes = @Html.Raw(Json.Serialize(Model.SixMonthsStakes.monthValue));
+		let oneYearWins = @Html.Raw(Json.Serialize(Model.OneYearWins.monthValue));
+		let oneYearStakes = @Html.Raw(Json.Serialize(Model.OneYearStakes.monthValue));
+		let oneYearTransactions = @Html.Raw(Json.Serialize(Model.OneYearTransactions.monthValue));
+        let daylyArr = [daylyUSD, daylyGBP, daylyEUR, daylyBGN];
+
+		let sixMonthWinsMonths = Object.keys(sixMonthsWins);
+		let sixMonthsWinsValus = Object.values(sixMonthsWins);
+		let sixMonthStakesMonths = Object.keys(sixMonthsStakes);
+		let sixMonthsStakesValus = Object.values(sixMonthsStakes);
+		let oneYearWinValues = Object.values(oneYearWins);
+        let oneYearStakesValues = Object.values(oneYearStakes);
+		let oneYearTransactionsMonths = Object.keys(oneYearTransactions);
+		let oneYearTransactionsValues = Object.values(oneYearTransactions);
+
+        oneYearPurple(oneYearTransactionsMonths, oneYearTransactionsValues, oneYearStakesValues, oneYearWinValues);
+        sixMonthsPurple(sixMonthWinsMonths, sixMonthsWinsValus, "Win");
+        sixMonthsGreen(sixMonthStakesMonths, sixMonthsStakesValus, "Stake");
+        daylyBlue(daylyArr, "Win");
+	});
+</script>

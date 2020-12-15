@@ -1,0 +1,153 @@
+﻿@model GameViewModel
+@{
+    ViewData["Title"] = "_GameBoardPartial";
+}
+
+
+<link href="~/css/ezslots.css" rel="stylesheet" type="text/css" />
+
+<div class="wrapper">
+    <div class="page-header">
+
+        <div class="container align-items-center">
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <div class="card card-coin card-plain">
+                        <div class="card-body">
+                            <h3 class="text-center game-name">@Model.GameName</h3>
+                            <div id="wonDiv" class="form-group d-none">
+                                <label id="animatedWinBox" class="form-control"><span id="wonBox"></span></label>
+                            </div>
+                            <div class="row justify-content-center">
+
+
+                            </div>
+
+                            <div class="tab-content tab-subcategories game-board-container">
+                                <div class="tab-pane active" id="linka">
+                                    <div class=" row justify-content-center">
+                                        <div id="slot_div" class="slot-machine">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="card card-coin card-plain">
+                        <div class="card-body">
+                            <form class="" id="betForm" asp-area="" asp-controller="game" asp-action="bet">
+                                <div class="form-group">
+                                    <label class="form-control" asp-for="BetAmount">Bet</label>
+                                    <input class="form-control" asp-for="BetAmount" />
+                                    <span asp-validation-for="BetAmount" class="text-danger"></span>
+                                </div>
+                                <input type="hidden" asp-for="GameBoardRows" value="@Model.Board.GetLength(0)" />
+                                <input type="hidden" asp-for="GameBoardCols" value="@Model.Board.GetLength(1)" />
+                                <button id="betButton" type="submit" class="btn btn-primary">Spin to Win!!!</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="~/js/gameAnimation/ezslots.js"></script>
+<script src="~/js/gameAnimation/jquery-1.11.3.js"></script>
+<script src="~/js/gameAnimation/gameStart.js"></script>
+<script>
+$(function () {
+    //Game settings
+    var images = [
+        '<img src="../images/games/@Model.ImagePrefix-low.png">',
+        '<img src="../images/games/@Model.ImagePrefix-low.png">',
+        '<img src="../images/games/@Model.ImagePrefix-medium.png">',
+        '<img src="../images/games/@Model.ImagePrefix-high.png">',
+        '<img src="../images/games/@Model.ImagePrefix-wild.png">'];
+
+    let board = @Html.Raw(Json.Serialize(Model.Board)); //total rows
+
+    let totalRows = @Html.Raw(Json.Serialize(Model.GameBoardRows)); //total rows
+    let totalCols = @Html.Raw(Json.Serialize(Model.GameBoardCols));; //total cols
+    let slots = [];
+
+    for (var i = 0; i <= totalRows; i += 1) {
+        $('#slot_div').append(`<div class="row" id="ezslots${i}"></div>`);
+    };
+
+    for (var i = 0; i < totalRows; i += 1) {
+        slots.push(new EZSlots(`ezslots${i}`,
+            {
+                "reelCount": totalCols,
+                "symbols": images,
+                "height": 80,
+                "width": 80
+            }))
+    };
+    $('#betForm').on('submit', function (event) {
+        event.preventDefault();
+        const $withdrawForm = $('#betForm');
+        let value = +($withdrawForm.find('input[name="BetAmount"]').val());
+        let balance = +($('#balanceSpan').html());
+        const spanValidation = $withdrawForm.find('*[data-valmsg-for="BetAmount"]');
+        if (value > balance || value < 1) {
+            spanValidation.show();
+            spanValidation.addClass('field-validation-error');
+            spanValidation.removeClass('field-validation-valid');
+            spanValidation.html("Insufficient funds");
+        }
+        else {
+            let spanToHide = $('#betForm').find('*[data-valmsg-for="BetAmount"]');
+            spanToHide.hide();      
+            $('#wonDiv').addClass('d-none');
+            const data = $(this).serialize();
+            const url = $(this).attr("action");
+            const posting = $.post(url, data);
+            let newBalance = balance - value;
+            $('#balanceSpan').html(Math.round(newBalance * 100) / 100);
+            $('#betButton').attr('disabled', 'disabled');
+            posting.done(function (data) {
+                $('#slot_div').html('');
+                let finalBoard = data['board'];
+                let winCoef = +(data['winCoef']);
+                let betAmount = +(data['betAmount']);
+                let winningRows = data['winningRows'];
+
+                function callback(coef, amount, winRows) {
+                    return function () {
+                        let winAmount = (Math.round(coef * amount * 100)) / 100;
+                        let newBalance = (+($('#balanceSpan').html())) + winAmount;
+                        $('#wonDiv').removeClass('d-none');
+
+                        if (winAmount > 0) {
+                            $('#wonBox').html('Won ' + winAmount + ' !');
+                            $('#balanceSpan').html(Math.round(newBalance * 100) / 100);
+                            for(var item in winRows){
+                                $('#ezslots' + winRows[item] + '').addClass('winningRows');
+                            };
+                        }
+                        else {
+                            $('#wonBox').html('Better luck next time!');
+                        }
+                        $('#betButton').removeAttr('disabled');
+                    }
+                };
+
+                intSlotGameApp(images, finalBoard, totalRows, totalCols, callback(winCoef, betAmount, winningRows));
+
+                //console.log(data);
+            });
+        }
+
+    });
+
+});
+</script>
+
+
+

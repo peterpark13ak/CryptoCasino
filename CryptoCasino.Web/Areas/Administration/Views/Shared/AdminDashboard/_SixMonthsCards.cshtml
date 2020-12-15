@@ -1,0 +1,39 @@
+﻿<div class="col-lg-4">
+    <div class="card card-chart">
+        <div class="card-header">
+            <h5 class="card-category">Six Months Wins</h5>
+            <h3 class="card-title"><i class="tim-icons icon-bell-55 text-primary"></i> @Model.SixMonthsTotalWins</h3>
+        </div>
+        <div class="card-body">
+            <div class="chart-area">
+                <canvas id="chartLinePurple"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-lg-4">
+    <div class="card card-chart">
+        <div class="card-header">
+            <h5 class="card-category">Daily Wins</h5>
+            <h3 class="card-title"><i class="tim-icons icon-delivery-fast text-info"></i> @String.Format("{0:.##}", Model.DaylyWins.DaylyTotalUSD)</h3>
+        </div>
+        <div class="card-body">
+            <div class="chart-area">
+                <canvas id="CountryChart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-lg-4">
+    <div class="card card-chart">
+        <div class="card-header">
+            <h5 class="card-category">Six Months Stakes</h5>
+            <h3 class="card-title"><i class="tim-icons icon-send text-success"></i> @Model.SixMonthsTotalStakes</h3>
+        </div>
+        <div class="card-body">
+            <div class="chart-area">
+                <canvas id="chartLineGreen"></canvas>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+﻿<table class="table tablesorter table-hover " id="plain-table">
+    <thead class=" text-primary">
+        <tr>
+            <th class="header">
+                Transaction Full Ditails
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <p>
+                    Amount in USD: @String.Format("{0:.##}", Model.NormalisedAmount)
+                </p>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p>
+                    Amount in User Currency: @String.Format("{0:.##}", Model.OriginalAmount) @Model.UserCurrency
+                </p>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p>
+                    Transaction Type: @Model.TransactionType
+                </p>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p>
+                    Created On:  @Model.CreatedOn
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p>
+                    Transaction Description: @Model.Description
+                </p>
+
+            </td>
+        </tr>
+
+    </tbody>
+</table>

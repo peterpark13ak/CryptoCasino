@@ -1,0 +1,162 @@
+﻿
+@{
+    ViewData["Title"] = "Home";
+}
+    <section class="section section-lg section-safe">
+        <div class="container">
+            <div class="row row-grid justify-content-between">
+                <div class="col-md-5">
+                    <img src="~/images/home-page-image.jpg" class="img-fluid floating">
+                    <div class="card card-stats bg-danger">
+                        <div class="card-body">
+                            <div class="justify-content-center">
+                                <div class="numbers">
+                                    <p class="card-title">100%</p>
+                                    <p class="card-category text-white">Safe</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card card-stats bg-info">
+                        <div class="card-body">
+                            <div class="justify-content-center">
+                                <div class="numbers">
+                                    <p class="card-title">1M</p>
+                                    <p class="card-category text-white">Satisfied customers</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card card-stats bg-default">
+                        <div class="card-body">
+                            <div class="justify-content-center">
+                                <div class="numbers">
+                                    <p class="card-title">10000$</p>
+                                    <p class="card-category text-white">Jackpot</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="px-md-5">
+                        <hr class="line-success">
+                        <h3>Awesome games</h3>
+                        <p>Do you believe in luck? The fun never stops in Alpha Casino! And remember - the ones who win are the ones who play!</p>
+                        <ul class="list-unstyled mt-5">
+                            <li class="py-2">
+                                <div class="d-flex align-items-center">
+                                    <div class="icon icon-success mb-2">
+                                        <i class="tim-icons icon-credit-card"></i>
+                                    </div>
+                                    <div class="ml-3">
+                                        <h6>100% safe transfers</h6>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="py-2">
+                                <div class="d-flex align-items-center">
+                                    <div class="icon icon-success mb-2">
+                                        <i class="tim-icons icon-world"></i>
+                                    </div>
+                                    <div class="ml-3">
+                                        <h6>Amazing games</h6>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="py-2">
+                                <div class="d-flex align-items-center">
+                                    <div class="icon icon-success mb-2">
+                                        <i class="tim-icons icon-single-02"></i>
+                                    </div>
+                                    <div class="ml-3">
+                                        <h6>Super friendly support team</h6>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section section-lg section-coins">
+        <img src="../assets/img/path3.png" class="path">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card card-coin card-plain">
+                        <div class="card-header">
+                            <img src="~/images/cleopatra-transperant-small.png" class="img-center img-fluid" />
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+                                    <h4 class="text-uppercase">The Secrets of Cleopatra</h4>
+                                    <hr class="line-primary">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <ul class="list-group">
+                                    <li class="list-group-item">3 rows of symbols</li>
+                                    <li class="list-group-item">4 chances to win</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="card-footer text-center">
+                            <a asp-area="" asp-controller="game" asp-action="small"><button class="btn btn-primary btn-simple">Play</button></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card card-coin card-plain">
+                        <div class="card-header">
+                            <img src="~/images/knight.png" class="img-center img-fluid"/>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+                                    <h4 class="text-uppercase">Sir Cash'a'lot</h4>
+                                    <hr class="line-success">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <ul class="list-group">
+                                    <li class="list-group-item">5 rows of symbols</li>
+                                    <li class="list-group-item">5 chances to win</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="card-footer text-center">
+                            <a asp-area="" asp-controller="game" asp-action="medium"><button class="btn btn-success btn-simple">Play</button></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card card-coin card-plain">
+                        <div class="card-header">
+                            <img src="~/images/galena.png" class="img-center img-fluid">
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+                                    <h4 class="text-uppercase">Gold Diggers</h4>
+                                    <hr class="line-info">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <ul class="list-group">
+                                    <li class="list-group-item">5 rows of symbols</li>
+                                    <li class="list-group-item">8 chances to win</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="card-footer text-center">
+                            <a asp-area="" asp-controller="game" asp-action="big"><button class="btn btn-info btn-simple">Play</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+

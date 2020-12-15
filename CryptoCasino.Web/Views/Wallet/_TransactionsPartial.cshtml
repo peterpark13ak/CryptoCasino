@@ -1,0 +1,30 @@
+﻿@model IEnumerable<TransactionViewModel>
+@{
+    ViewData["Title"] = "_TransactionsPartial";
+}
+
+<div class="table">
+    <table id="table" class="table table-hover table-dark">
+        <thead>
+            <tr>
+                <th scope="col">Created On</th>
+                <th scope="col">Type</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var transaction in Model)
+            {
+
+                <tr>
+                    <td>@transaction.CreatedOn</td>
+                    <td>@transaction.TransactionTypeName</td>
+                    <td>@String.Format("{0:.##}", transaction.Amount)</td>
+                    <td>@transaction.Description</td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

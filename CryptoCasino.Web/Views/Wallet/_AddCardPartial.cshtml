@@ -1,0 +1,25 @@
+﻿@model CardViewModel
+@{
+    ViewData["Title"] = "_AddCardPartial";
+}
+
+<div class="card card-coin card-plain">
+    <div class="card-body">
+        <h4>Add a new card</h4>
+        <div class="card-wrapper"></div>    
+        <form id="addCard" asp-area="" asp-controller="wallet" asp-action="addcard">
+            <div class="form-group">
+                <label asp-for="RealNumber">Card Number</label>
+                <input class="form-control" asp-for="RealNumber" />
+                <span asp-validation-for="RealNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ExpirationDate">Expiration Date</label>
+                <input class="form-control" asp-for="ExpirationDate" />
+                <span asp-validation-for="ExpirationDate" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    </div>
+
